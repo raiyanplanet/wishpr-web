@@ -10,6 +10,7 @@ import {
   Search,
   Home,
 } from "lucide-react";
+import logo from "../public/logo2.png";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         <nav className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center">
-              <Heart className="w-4 h-4 text-zinc-900" />
+              <img src={logo} alt="" />
             </div>
             <span className="text-xl font-semibold text-zinc-100">Wishpr</span>
           </div>
