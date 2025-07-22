@@ -55,16 +55,14 @@ const App = () => {
             {/* Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <a
-                href="https://expo.dev/artifacts/eas/w4GzQ5Z9y7AMQY1bgS5ewp.apk
-"
+                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
                 className="flex items-center space-x-3 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 px-8 py-4 rounded-lg font-medium transition-colors w-full sm:w-auto">
                 <Download className="w-5 h-5" />
                 <span>Download for iOS</span>
               </a>
 
               <a
-                href="https://expo.dev/artifacts/eas/w4GzQ5Z9y7AMQY1bgS5ewp.apk
-"
+                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
                 className="flex items-center space-x-3 border border-zinc-700 text-zinc-100 hover:bg-zinc-900 px-8 py-4 rounded-lg font-medium transition-colors w-full sm:w-auto">
                 <Download className="w-5 h-5" />
                 <span>Get on Android</span>
@@ -353,8 +351,7 @@ const App = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://expo.dev/artifacts/eas/w4GzQ5Z9y7AMQY1bgS5ewp.apk
-"
+                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
                 className="flex items-center justify-center space-x-3 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 px-8 py-4 rounded-lg font-medium transition-colors">
                 <Download className="w-5 h-5" />
                 <span>Download Wishpr</span>
