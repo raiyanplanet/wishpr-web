@@ -1,0 +1,153 @@
+{
+  "website": {
+    "name": "Wishpr",
+    "tagline": "Connect your dreams",
+    "description": "Share your wishes with the world",
+    "logo": {
+      "src": "/logo2.png",
+      "alt": "Wishpr Logo"
+    }
+  },
+  "hero": {
+    "badge": {
+      "text": "Join the community",
+      "status": "live"
+    },
+    "title": "Share your wishes with the world",
+    "subtitle": "Connect with friends, share your dreams, and inspire each other. The social platform where wishes come alive through community support.",
+    "downloadLinks": [
+      {
+        "platform": "iOS",
+        "label": "Download for iOS",
+        "url": "https://expo.dev/artifacts/eas/tciQy8P5Bh1bP4UhDqQXJi.apk",
+        "primary": true
+      },
+      {
+        "platform": "Android",
+        "label": "Get on Android",
+        "url": "https://expo.dev/artifacts/eas/tciQy8P5Bh1bP4UhDqQXJi.apk",
+        "primary": false
+      }
+    ],
+    "stats": [
+      {
+        "value": "2M+",
+        "label": "Active Users"
+      },
+      {
+        "value": "10M+",
+        "label": "Wishes Shared"
+      },
+      {
+        "value": "4.8",
+        "label": "App Rating"
+      }
+    ]
+  },
+  "mockup": {
+    "posts": [
+      {
+        "id": 1,
+        "author": "Sarah Chen",
+        "timeAgo": "2 hours ago",
+        "content": "Just booked my trip to Tokyo! ✈️ Dreams do come true when you work for them 🌸",
+        "likes": 24,
+        "comments": 5,
+        "avatarGradient": "from-purple-500 to-pink-500"
+      },
+      {
+        "id": 2,
+        "author": "Alex Kumar",
+        "timeAgo": "1 day ago",
+        "content": "Finally launched my startup! 🚀 Thanks to everyone who supported my wish",
+        "likes": 89,
+        "comments": 12,
+        "avatarGradient": "from-blue-500 to-cyan-500"
+      }
+    ]
+  },
+  "features": {
+    "title": "Built for connection",
+    "subtitle": "Everything you need to share your dreams and connect with a supportive community.",
+    "items": [
+      {
+        "icon": "Camera",
+        "title": "Share Stories",
+        "description": "Post photos, videos, and updates about your wishes and progress."
+      },
+      {
+        "icon": "Users",
+        "title": "Build Community",
+        "description": "Connect with friends, follow inspiring people, and build meaningful relationships."
+      },
+      {
+        "icon": "MessageCircle",
+        "title": "Stay Connected",
+        "description": "Chat with friends, comment on posts, and get support from the community."
+      }
+    ]
+  },
+  "socialFeatures": {
+    "title": "More than just wishes",
+    "items": [
+      {
+        "icon": "Heart",
+        "title": "Like & Support",
+        "description": "Show support for friends' wishes and celebrate their achievements together."
+      },
+      {
+        "icon": "MessageCircle",
+        "title": "Real-time Chat",
+        "description": "Direct messaging and group chats to stay connected with your network."
+      },
+      {
+        "icon": "Share",
+        "title": "Share Progress",
+        "description": "Keep your community updated with milestones and breakthrough moments."
+      }
+    ],
+    "communityStats": {
+      "title": "Join the Movement",
+      "subtitle": "Be part of a global community working towards their dreams",
+      "stats": [
+        {
+          "value": "2M+",
+          "label": "Members"
+        },
+        {
+          "value": "50M+",
+          "label": "Interactions"
+        }
+      ]
+    }
+  },
+  "cta": {
+    "title": "Start sharing your story",
+    "subtitle": "Download Wishpr and join millions of people sharing their dreams and supporting each other.",
+    "downloadLink": {
+      "label": "Download Wishpr",
+      "url": "https://expo.dev/artifacts/eas/tciQy8P5Bh1bP4UhDqQXJi.apk"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "label": "Privacy",
+        "href": "#"
+      },
+      {
+        "label": "Terms",
+        "href": "#"
+      },
+      {
+        "label": "Community",
+        "href": "#"
+      },
+      {
+        "label": "Support",
+        "href": "#"
+      }
+    ],
+    "copyright": "© 2025 Wishpr. Connect your dreams."
+  }
+}

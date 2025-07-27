@@ -10,23 +10,52 @@ import {
   Search,
   Home,
 } from "lucide-react";
-import logo from "../public/logo2.png";
+
+import websiteData from "./Websitedata.json";
+
+const icons = {
+  Camera,
+  Users,
+  MessageCircle,
+  Heart,
+  Share,
+};
+
+type IconName = keyof typeof icons;
+
+const getIcon = (iconName: string) => {
+  if (iconName in icons) {
+    return icons[iconName as IconName];
+  }
+  return Heart;
+};
 
 const App = () => {
+  const data = websiteData;
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
       <header className="px-6 py-6 border-b border-zinc-800">
         <nav className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-zinc-100 rounded-lg flex items-center justify-center">
-              <img src={logo} alt="" />
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <img
+                src={data.website.logo.src}
+                alt={data.website.logo.alt}
+                className="w-6 h-6"
+              />
             </div>
-            <span className="text-xl font-semibold text-zinc-100">Wishpr</span>
+            <span className="text-xl font-semibold text-zinc-100">
+              {data.website.name}
+            </span>
           </div>
-          <button className="hidden md:flex items-center space-x-2 text-zinc-400 hover:text-zinc-100 transition-colors">
-            <span className="text-sm">Sign In</span>
-          </button>
+          <a
+            href={data.hero.downloadLinks[0].url}
+            className="hidden md:flex items-center space-x-2 text-zinc-100 px-5 py-2 rounded-xl hover:text-zinc-100 bg-blue-600  transition-colors">
+            <Download className="w-4 h-4" />
+            <span className="text-sm">Download</span>
+          </a>
         </nav>
       </header>
 
@@ -37,52 +66,50 @@ const App = () => {
           <section className="py-20 text-center">
             <div className="inline-flex items-center space-x-2 bg-zinc-900 border border-zinc-800 rounded-full px-4 py-2 mb-8">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-zinc-400">Join the community</span>
+              <span className="text-sm text-zinc-400">
+                {data.hero.badge.text}
+              </span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-light text-zinc-100 mb-6 leading-tight">
-              Share your wishes
+              {data.hero.title.split(" with ")[0]}
               <br />
-              <span className="font-medium text-zinc-300">with the world</span>
+              <span className="font-medium text-zinc-300">
+                with {data.hero.title.split(" with ")[1]}
+              </span>
             </h1>
 
             <p className="text-lg text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Connect with friends, share your dreams, and inspire each other.
-              The social platform where wishes come alive through community
-              support.
+              {data.hero.subtitle}
             </p>
 
             {/* Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <a
-                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
-                className="flex items-center space-x-3 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 px-8 py-4 rounded-lg font-medium transition-colors w-full sm:w-auto">
-                <Download className="w-5 h-5" />
-                <span>Download for iOS</span>
-              </a>
-
-              <a
-                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
-                className="flex items-center space-x-3 border border-zinc-700 text-zinc-100 hover:bg-zinc-900 px-8 py-4 rounded-lg font-medium transition-colors w-full sm:w-auto">
-                <Download className="w-5 h-5" />
-                <span>Get on Android</span>
-              </a>
+              {data.hero.downloadLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  className={`flex items-center space-x-3 px-8 py-4 rounded-lg font-medium transition-colors w-full sm:w-auto ${
+                    link.primary
+                      ? "bg-zinc-100 text-zinc-900 hover:bg-zinc-200"
+                      : "border border-zinc-700 text-zinc-100 hover:bg-zinc-900"
+                  }`}>
+                  <Download className="w-5 h-5" />
+                  <span>{link.label}</span>
+                </a>
+              ))}
             </div>
 
             {/* Stats */}
             <div className="flex flex-wrap justify-center gap-12 text-center">
-              <div>
-                <div className="text-2xl font-semibold text-zinc-100">2M+</div>
-                <div className="text-sm text-zinc-500">Active Users</div>
-              </div>
-              <div>
-                <div className="text-2xl font-semibold text-zinc-100">10M+</div>
-                <div className="text-sm text-zinc-500">Wishes Shared</div>
-              </div>
-              <div>
-                <div className="text-2xl font-semibold text-zinc-100">4.8</div>
-                <div className="text-sm text-zinc-500">App Rating</div>
-              </div>
+              {data.hero.stats.map((stat, index) => (
+                <div key={index}>
+                  <div className="text-2xl font-semibold text-zinc-100">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-zinc-500">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -105,7 +132,7 @@ const App = () => {
                           <Heart className="w-4 h-4 text-zinc-900" />
                         </div>
                         <span className="font-semibold text-zinc-100">
-                          Wishpr
+                          {data.website.name}
                         </span>
                       </div>
                       <div className="flex items-center space-x-3">
@@ -116,71 +143,44 @@ const App = () => {
 
                     {/* Feed content */}
                     <div className="p-4 space-y-4">
-                      {/* Post 1 */}
-                      <div className="bg-zinc-900 rounded-xl border border-zinc-800">
-                        <div className="p-4">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-                            <div>
-                              <p className="text-sm font-medium text-zinc-100">
-                                Sarah Chen
-                              </p>
-                              <p className="text-xs text-zinc-500">
-                                2 hours ago
-                              </p>
-                            </div>
-                          </div>
-                          <p className="text-sm text-zinc-200 mb-3">
-                            Just booked my trip to Tokyo! ✈️ Dreams do come true
-                            when you work for them 🌸
-                          </p>
-                          <div className="flex items-center justify-between text-zinc-400">
-                            <div className="flex items-center space-x-4">
-                              <div className="flex items-center space-x-1">
-                                <Heart className="w-4 h-4" />
-                                <span className="text-xs">24</span>
-                              </div>
-                              <div className="flex items-center space-x-1">
-                                <MessageCircle className="w-4 h-4" />
-                                <span className="text-xs">5</span>
+                      {data.mockup.posts.map((post) => (
+                        <div
+                          key={post.id}
+                          className="bg-zinc-900 rounded-xl border border-zinc-800">
+                          <div className="p-4">
+                            <div className="flex items-center space-x-3 mb-3">
+                              <div
+                                className={`w-8 h-8 bg-gradient-to-r ${post.avatarGradient} rounded-full`}></div>
+                              <div>
+                                <p className="text-sm font-medium text-zinc-100">
+                                  {post.author}
+                                </p>
+                                <p className="text-xs text-zinc-500">
+                                  {post.timeAgo}
+                                </p>
                               </div>
                             </div>
-                            <Share className="w-4 h-4" />
+                            <p className="text-sm text-zinc-200 mb-3">
+                              {post.content}
+                            </p>
+                            <div className="flex items-center justify-between text-zinc-400">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex items-center space-x-1">
+                                  <Heart className="w-4 h-4" />
+                                  <span className="text-xs">{post.likes}</span>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <MessageCircle className="w-4 h-4" />
+                                  <span className="text-xs">
+                                    {post.comments}
+                                  </span>
+                                </div>
+                              </div>
+                              <Share className="w-4 h-4" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Post 2 */}
-                      <div className="bg-zinc-900 rounded-xl border border-zinc-800">
-                        <div className="p-4">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-                            <div>
-                              <p className="text-sm font-medium text-zinc-100">
-                                Alex Kumar
-                              </p>
-                              <p className="text-xs text-zinc-500">1 day ago</p>
-                            </div>
-                          </div>
-                          <p className="text-sm text-zinc-200 mb-3">
-                            Finally launched my startup! 🚀 Thanks to everyone
-                            who supported my wish
-                          </p>
-                          <div className="flex items-center justify-between text-zinc-400">
-                            <div className="flex items-center space-x-4">
-                              <div className="flex items-center space-x-1">
-                                <Heart className="w-4 h-4" />
-                                <span className="text-xs">89</span>
-                              </div>
-                              <div className="flex items-center space-x-1">
-                                <MessageCircle className="w-4 h-4" />
-                                <span className="text-xs">12</span>
-                              </div>
-                            </div>
-                            <Share className="w-4 h-4" />
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
 
                     {/* Bottom navigation */}
@@ -205,53 +205,30 @@ const App = () => {
           <section className="py-20 border-t border-zinc-800">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-light text-zinc-100 mb-4">
-                Built for connection
+                {data.features.title}
               </h2>
               <p className="text-zinc-400 max-w-2xl mx-auto">
-                Everything you need to share your dreams and connect with a
-                supportive community.
+                {data.features.subtitle}
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-12">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <Camera className="w-6 h-6 text-zinc-300" />
-                </div>
-                <h3 className="font-medium text-zinc-100 mb-3">
-                  Share Stories
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Post photos, videos, and updates about your wishes and
-                  progress.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-6 h-6 text-zinc-300" />
-                </div>
-                <h3 className="font-medium text-zinc-100 mb-3">
-                  Build Community
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Connect with friends, follow inspiring people, and build
-                  meaningful relationships.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <MessageCircle className="w-6 h-6 text-zinc-300" />
-                </div>
-                <h3 className="font-medium text-zinc-100 mb-3">
-                  Stay Connected
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Chat with friends, comment on posts, and get support from the
-                  community.
-                </p>
-              </div>
+              {data.features.items.map((feature, index) => {
+                const IconComponent = getIcon(feature.icon);
+                return (
+                  <div key={index} className="text-center">
+                    <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-6">
+                      <IconComponent className="w-6 h-6 text-zinc-300" />
+                    </div>
+                    <h3 className="font-medium text-zinc-100 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-zinc-400 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
@@ -260,53 +237,27 @@ const App = () => {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-3xl font-light text-zinc-100 mb-6">
-                  More than just wishes
+                  {data.socialFeatures.title}
                 </h2>
                 <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-zinc-300" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-zinc-100 mb-2">
-                        Like & Support
-                      </h3>
-                      <p className="text-zinc-400 text-sm">
-                        Show support for friends' wishes and celebrate their
-                        achievements together.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="w-4 h-4 text-zinc-300" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-zinc-100 mb-2">
-                        Real-time Chat
-                      </h3>
-                      <p className="text-zinc-400 text-sm">
-                        Direct messaging and group chats to stay connected with
-                        your network.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Share className="w-4 h-4 text-zinc-300" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-zinc-100 mb-2">
-                        Share Progress
-                      </h3>
-                      <p className="text-zinc-400 text-sm">
-                        Keep your community updated with milestones and
-                        breakthrough moments.
-                      </p>
-                    </div>
-                  </div>
+                  {data.socialFeatures.items.map((item, index) => {
+                    const IconComponent = getIcon(item.icon);
+                    return (
+                      <div key={index} className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <IconComponent className="w-4 h-4 text-zinc-300" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-zinc-100 mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-zinc-400 text-sm">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -316,24 +267,24 @@ const App = () => {
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-zinc-100 mb-2">
-                    Join the Movement
+                    {data.socialFeatures.communityStats.title}
                   </h3>
                   <p className="text-zinc-400 mb-6">
-                    Be part of a global community working towards their dreams
+                    {data.socialFeatures.communityStats.subtitle}
                   </p>
                   <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <div className="text-lg font-semibold text-zinc-100">
-                        2M+
-                      </div>
-                      <div className="text-xs text-zinc-500">Members</div>
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold text-zinc-100">
-                        50M+
-                      </div>
-                      <div className="text-xs text-zinc-500">Interactions</div>
-                    </div>
+                    {data.socialFeatures.communityStats.stats.map(
+                      (stat, index) => (
+                        <div key={index}>
+                          <div className="text-lg font-semibold text-zinc-100">
+                            {stat.value}
+                          </div>
+                          <div className="text-xs text-zinc-500">
+                            {stat.label}
+                          </div>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               </div>
@@ -343,18 +294,17 @@ const App = () => {
           {/* CTA Section */}
           <section className="py-20 text-center border-t border-zinc-800">
             <h2 className="text-3xl font-light text-zinc-100 mb-4">
-              Start sharing your story
+              {data.cta.title}
             </h2>
             <p className="text-zinc-400 mb-12 max-w-xl mx-auto">
-              Download Wishpr and join millions of people sharing their dreams
-              and supporting each other.
+              {data.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://expo.dev/artifacts/eas/eow9PgB3WUrGqqCvvaRuwv.apk"
+                href={data.cta.downloadLink.url}
                 className="flex items-center justify-center space-x-3 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 px-8 py-4 rounded-lg font-medium transition-colors">
                 <Download className="w-5 h-5" />
-                <span>Download Wishpr</span>
+                <span>{data.cta.downloadLink.label}</span>
               </a>
             </div>
           </section>
@@ -369,25 +319,23 @@ const App = () => {
               <div className="w-6 h-6 bg-zinc-100 rounded flex items-center justify-center">
                 <Heart className="w-3 h-3 text-zinc-900" />
               </div>
-              <span className="font-medium text-zinc-100">Wishpr</span>
+              <span className="font-medium text-zinc-100">
+                {data.website.name}
+              </span>
             </div>
             <div className="flex space-x-8 text-sm text-zinc-400">
-              <a href="#" className="hover:text-zinc-100 transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-zinc-100 transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-zinc-100 transition-colors">
-                Community
-              </a>
-              <a href="#" className="hover:text-zinc-100 transition-colors">
-                Support
-              </a>
+              {data.footer.links.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="hover:text-zinc-100 transition-colors">
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-zinc-800 text-center text-sm text-zinc-500">
-            © 2025 Wishpr. Connect your dreams.
+            {data.footer.copyright}
           </div>
         </div>
       </footer>
