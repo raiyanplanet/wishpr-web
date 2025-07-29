@@ -200,6 +200,106 @@ const App = () => {
               </div>
             </div>
           </section>
+          {/* Phone Mockup */}
+          <section className="py-16 sm:py-24">
+            <div className="relative max-w-sm mx-auto">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-[3rem] blur-3xl scale-110"></div>
+
+              <div className="relative bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-[2.5rem] p-3 shadow-2xl border border-zinc-700/50">
+                <div className="bg-zinc-950 rounded-[2rem] overflow-hidden border border-zinc-800/50 shadow-inner">
+                  {/* Status bar */}
+                  <div className="bg-gradient-to-r from-zinc-900 to-zinc-800 h-10 rounded-t-[2rem] flex items-center justify-center relative">
+                    <div className="w-24 h-1.5 bg-zinc-700 rounded-full"></div>
+                    <div className="absolute right-4 flex items-center space-x-1">
+                      <div className="w-6 h-3 border border-zinc-600 rounded-sm">
+                        <div className="w-full h-full bg-green-500 rounded-sm"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* App content */}
+                  <div className="h-[600px] bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
+                    {/* App header */}
+                    <div className="flex items-center justify-between p-4 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                          <Heart className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="font-bold text-zinc-100">
+                          {data.website.name}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="relative">
+                          <Bell className="w-5 h-5 text-zinc-400" />
+                          <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                        </div>
+                        <MessageCircle className="w-5 h-5 text-zinc-400" />
+                      </div>
+                    </div>
+
+                    {/* Feed content */}
+                    <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-120px)]">
+                      {data.mockup.posts.map((post) => (
+                        <div
+                          key={post.id}
+                          className="bg-gradient-to-r from-zinc-900/80 to-zinc-800/80 backdrop-blur-xl rounded-2xl border border-zinc-700/30 shadow-lg hover:shadow-xl transition-all duration-300">
+                          <div className="p-4">
+                            <div className="flex items-center space-x-3 mb-3">
+                              <div
+                                className={`w-10 h-10 bg-gradient-to-r ${post.avatarGradient} rounded-full shadow-lg`}></div>
+                              <div>
+                                <p className="text-sm font-semibold text-zinc-100">
+                                  {post.author}
+                                </p>
+                                <p className="text-xs text-zinc-500">
+                                  {post.timeAgo}
+                                </p>
+                              </div>
+                            </div>
+                            <p className="text-sm text-zinc-200 mb-4 leading-relaxed">
+                              {post.content}
+                            </p>
+                            <div className="flex items-center justify-between text-zinc-400">
+                              <div className="flex items-center space-x-6">
+                                <div className="flex items-center space-x-2 hover:text-red-400 transition-colors cursor-pointer">
+                                  <Heart className="w-4 h-4" />
+                                  <span className="text-xs font-medium">
+                                    {post.likes}
+                                  </span>
+                                </div>
+                                <div className="flex items-center space-x-2 hover:text-blue-400 transition-colors cursor-pointer">
+                                  <MessageCircle className="w-4 h-4" />
+                                  <span className="text-xs font-medium">
+                                    {post.comments}
+                                  </span>
+                                </div>
+                              </div>
+                              <Share className="w-4 h-4 hover:text-purple-400 transition-colors cursor-pointer" />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom navigation */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-zinc-900/90 backdrop-blur-xl border-t border-zinc-800/50 p-4">
+                      <div className="flex items-center justify-around">
+                        <Home className="w-6 h-6 text-blue-400" />
+                        <Search className="w-6 h-6 text-zinc-400 hover:text-purple-400 transition-colors" />
+                        <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                          <Plus className="w-5 h-5 text-white" />
+                        </div>
+                        <Heart className="w-6 h-6 text-zinc-400 hover:text-red-400 transition-colors" />
+                        <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full shadow-lg"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* Features */}
           <section className="py-20 border-t border-zinc-800">
