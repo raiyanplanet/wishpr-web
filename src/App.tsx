@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import websiteData from "./Websitedata.json";
+import DeveloperInfo from "./Developerinfo";
 
 const icons = {
   Camera,
@@ -320,6 +321,11 @@ const App = () => {
                 <span>{data.cta.downloadLink.label}</span>
               </a>
             </div>
+          </section>
+
+          <section className=" border-t border-zinc-800">
+            <h2 className="text-3xl  text-center py-5">Developer info.</h2>
+            <DeveloperInfo />
           </section>
         </div>
       </main>

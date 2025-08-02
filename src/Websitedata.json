@@ -18,14 +18,14 @@
     "downloadLinks": [
       {
         "platform": "iOS",
-        "label": "Download for iOS",
-        "url": "https://expo.dev/artifacts/eas/5qj2Coud6D5UeLpne773Vw.apk",
+        "label": "Not available now",
+        "url": "https://expo.dev/artifacts/eas/9732RHAn26bPEUHT9Bo1pA.apk",
         "primary": true
       },
       {
         "platform": "Android",
         "label": "Get on Android",
-        "url": "https://expo.dev/artifacts/eas/5qj2Coud6D5UeLpne773Vw.apk",
+        "url": "https://expo.dev/artifacts/eas/9732RHAn26bPEUHT9Bo1pA.apk",
         "primary": false
       }
     ],
@@ -126,7 +126,7 @@
     "subtitle": "Download Wishpr and join millions of people sharing their dreams and supporting each other.",
     "downloadLink": {
       "label": "Download Wishpr",
-      "url": "https://expo.dev/artifacts/eas/5qj2Coud6D5UeLpne773Vw.apk"
+      "url": "https://expo.dev/artifacts/eas/9732RHAn26bPEUHT9Bo1pA.apk"
     }
   },
   "footer": {
